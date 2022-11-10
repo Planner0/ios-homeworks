@@ -17,7 +17,7 @@ class AppCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     func start() {
-        print("AppCoordinatorStart")
+        //print("AppCoordinatorStart")
         goToAuth()
     }
     

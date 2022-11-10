@@ -12,7 +12,6 @@ class TabBarCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     
     var children: [Coordinator] = []
-    
     var navigationController: UINavigationController
     
     private let firstModule = Factory(navigationController: UINavigationController(), state: .first)
@@ -33,3 +32,4 @@ class TabBarCoordinator: Coordinator {
         navigationController.setNavigationBarHidden(true, animated: true)
     }
 }
+

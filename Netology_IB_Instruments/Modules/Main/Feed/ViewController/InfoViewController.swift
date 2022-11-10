@@ -31,7 +31,7 @@ class InfoViewController: UIViewController {
         setup()
         tapAlertButton()
     }
-    
+
     func setup(){
         self.view.addSubview(alertButton)
         self.view.addSubview(titleUILabel)
