@@ -29,13 +29,13 @@ enum AppConfiguration {
 func dataTask(uRL: URL){
     let task = URLSession.shared.dataTask(with: uRL) { data, response, error in
         if let data = data {
-            print("🍏 \(data) \(String(data: data, encoding: .nextstep))")
+            //print("🍏 \(data) \(String(data: data, encoding: .nextstep))")
         }
         if let response = response as? HTTPURLResponse {
-            print("🍎 \(response.statusCode), \(response.allHeaderFields)")
+            //print("🍎 \(response.statusCode), \(response.allHeaderFields)")
         }
         if let error = error {
-            print("🍋 \(error.localizedDescription)")
+           // print("🍋 \(error.localizedDescription)")
         }
     }
     task.resume()
@@ -51,7 +51,7 @@ func dataTaskTwo(titleLabel: UILabel) {
             if let unwrappedData = data {
                 do {
                     let serializedDictionary = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
-                    print(serializedDictionary)
+                    //print(serializedDictionary)
                     
                     // Приводим serializedDictionary к [String: Any]
                     if let dict = serializedDictionary as? [String: Any],
@@ -64,7 +64,7 @@ func dataTaskTwo(titleLabel: UILabel) {
                     }
                 }
                 catch let error {
-                    print(error.localizedDescription)
+                    //print(error.localizedDescription)
                 }
             }
             // Печатаем ответ
@@ -112,7 +112,7 @@ func dataTask3(UILabel: UILabel) {
                     print(planet.name)
                 }
                 catch let error {
-                    print(error.localizedDescription)
+                    //print(error.localizedDescription)
                 }
             }
         }

@@ -35,6 +35,12 @@
 		9BA6EAD4283A6BC700193A79 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA6EAD3283A6BC700193A79 /* LoginInspector.swift */; };
 		9BA6EAD6283A835D00193A79 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA6EAD5283A835D00193A79 /* CustomButton.swift */; };
 		9BA9BAB0287F3E4100C271CA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA9BAAF287F3E4100C271CA /* NetworkService.swift */; };
+		9BAC7DA9291AB49D001772B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9BAC7DA8291AB49D001772B3 /* Realm */; };
+		9BAC7DAB291AB49D001772B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9BAC7DAA291AB49D001772B3 /* RealmSwift */; };
+		9BAC7DB0291ABD5F001772B3 /* DatabaseCoorinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC7DAF291ABD5F001772B3 /* DatabaseCoorinatable.swift */; };
+		9BAC7DB2291ABDA4001772B3 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC7DB1291ABDA4001772B3 /* Storable.swift */; };
+		9BAC7DB5291AC128001772B3 /* AuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC7DB4291AC128001772B3 /* AuthorizationModel.swift */; };
+		9BAC7DB7291AF4C7001772B3 /* RealmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC7DB6291AF4C7001772B3 /* RealmCoordinator.swift */; };
 		9BAEF201282D8973008157AB /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAEF200282D8973008157AB /* CheckerService.swift */; };
 		9BAEF203282D89B4008157AB /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAEF202282D89B4008157AB /* LoginFactory.swift */; };
 		9BB7FCFB281577840030BECC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7FCFA281577840030BECC /* StorageService.swift */; };
@@ -108,6 +114,10 @@
 		9BA6EAD3283A6BC700193A79 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		9BA6EAD5283A835D00193A79 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		9BA9BAAF287F3E4100C271CA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		9BAC7DAF291ABD5F001772B3 /* DatabaseCoorinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseCoorinatable.swift; sourceTree = "<group>"; };
+		9BAC7DB1291ABDA4001772B3 /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		9BAC7DB4291AC128001772B3 /* AuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModel.swift; sourceTree = "<group>"; };
+		9BAC7DB6291AF4C7001772B3 /* RealmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCoordinator.swift; sourceTree = "<group>"; };
 		9BAEF200282D8973008157AB /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
 		9BAEF202282D89B4008157AB /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		9BB7FCF8281577840030BECC /* libStorageService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStorageService.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +137,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BAC7DA9291AB49D001772B3 /* Realm in Frameworks */,
 				9BA2F17D2819C08D0006E8C4 /* iOSIntPackage in Frameworks */,
+				9BAC7DAB291AB49D001772B3 /* RealmSwift in Frameworks */,
 				9BA3742728971452002845C4 /* FirebaseAuth in Frameworks */,
 				9BA3742928971452002845C4 /* FirebaseDatabase in Frameworks */,
 				9BA3742B28971452002845C4 /* FirebaseStorage in Frameworks */,
@@ -181,8 +193,9 @@
 				9BF35AF8284BB44200AC894F /* Application */,
 				9BF35AF3284BB37E00AC894F /* Modules */,
 				845EB8F127B1AF8D004ACF55 /* Assets.xcassets */,
-				9BBD03B628986BC600995BA9 /* ServiceComponent */,
-				9BBD03B528986BB400995BA9 /* CoreComponent */,
+				9BAC7DAC291ABC2C001772B3 /* FireBase */,
+				9BAC7DAE291ABD07001772B3 /* DataBase */,
+				9BAC7DB3291AC0C8001772B3 /* Models */,
 				9BAEF202282D89B4008157AB /* LoginFactory.swift */,
 				9B62D38028212A0A008E8E50 /* User.swift */,
 				9BA6EAD5283A835D00193A79 /* CustomButton.swift */,
@@ -193,6 +206,41 @@
 				9BA0FEA928A43B4700E6EE44 /* CustomAlert.swift */,
 			);
 			path = Netology_IB_Instruments;
+			sourceTree = "<group>";
+		};
+		9BAC7DAC291ABC2C001772B3 /* FireBase */ = {
+			isa = PBXGroup;
+			children = (
+				9BBD03B528986BB400995BA9 /* CoreComponent */,
+				9BBD03B628986BC600995BA9 /* ServiceComponent */,
+			);
+			path = FireBase;
+			sourceTree = "<group>";
+		};
+		9BAC7DAD291ABCA1001772B3 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				9BAC7DB6291AF4C7001772B3 /* RealmCoordinator.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		9BAC7DAE291ABD07001772B3 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				9BAC7DAD291ABCA1001772B3 /* Realm */,
+				9BAC7DAF291ABD5F001772B3 /* DatabaseCoorinatable.swift */,
+				9BAC7DB1291ABDA4001772B3 /* Storable.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		9BAC7DB3291AC0C8001772B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9BAC7DB4291AC128001772B3 /* AuthorizationModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9BB7FCF9281577840030BECC /* StorageService */ = {
@@ -405,6 +453,8 @@
 				9BA3742628971452002845C4 /* FirebaseAuth */,
 				9BA3742828971452002845C4 /* FirebaseDatabase */,
 				9BA3742A28971452002845C4 /* FirebaseStorage */,
+				9BAC7DA8291AB49D001772B3 /* Realm */,
+				9BAC7DAA291AB49D001772B3 /* RealmSwift */,
 			);
 			productName = Netology_IB_Instruments;
 			productReference = 845EB8E527B1AF87004ACF55 /* Netology_IB_Instruments.app */;
@@ -461,6 +511,7 @@
 			packageReferences = (
 				9BA2F17B2819C08D0006E8C4 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				9BA3742528971452002845C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9BAC7DA7291AB49D001772B3 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 845EB8E627B1AF87004ACF55 /* Products */;
 			projectDirPath = "";
@@ -554,11 +605,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BAC7DB0291ABD5F001772B3 /* DatabaseCoorinatable.swift in Sources */,
 				9BA37B9F284E991800E4B41F /* FeedCoordinator.swift in Sources */,
 				9BF35AFA284BB48500AC894F /* AppCoordinator.swift in Sources */,
 				845EB90727B24EC6004ACF55 /* ProfileViewController.swift in Sources */,
 				9BF35B06284BBA8400AC894F /* TabBarCoordinator.swift in Sources */,
 				9BAEF201282D8973008157AB /* CheckerService.swift in Sources */,
+				9BAC7DB5291AC128001772B3 /* AuthorizationModel.swift in Sources */,
 				9BA6EAD6283A835D00193A79 /* CustomButton.swift in Sources */,
 				845EB8E927B1AF87004ACF55 /* AppDelegate.swift in Sources */,
 				9BEC1EB82800B1ED00C72363 /* PhotosCollectionViewCell.swift in Sources */,
@@ -566,6 +619,7 @@
 				84A4418127C1776500962836 /* FeedViewController.swift in Sources */,
 				9BB7FD00281577DE0030BECC /* Post.swift in Sources */,
 				9BA6EAD4283A6BC700193A79 /* LoginInspector.swift in Sources */,
+				9BAC7DB2291ABDA4001772B3 /* Storable.swift in Sources */,
 				9B5108FC27F87B1200AC6162 /* ProfileTableHeaderView.swift in Sources */,
 				9B62D38128212A0A008E8E50 /* User.swift in Sources */,
 				9B4B577D27EBA4DB008C2F3A /* LogInViewController.swift in Sources */,
@@ -573,6 +627,7 @@
 				9BEC1EBA2800B1FD00C72363 /* PhotosTableViewCell.swift in Sources */,
 				9BF2ED9127CB925A0064D648 /* ProfileHeaderView.swift in Sources */,
 				9B9D228028505BBA00010D6C /* FeedViewModel.swift in Sources */,
+				9BAC7DB7291AF4C7001772B3 /* RealmCoordinator.swift in Sources */,
 				845FA1A827C2813C002BD653 /* InfoViewController.swift in Sources */,
 				9BA37BA1284F118A00E4B41F /* Factory.swift in Sources */,
 				9B4352B528512DF200F6FD20 /* LoginViewModel.swift in Sources */,
@@ -873,6 +928,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		9BAC7DA7291AB49D001772B3 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -895,6 +958,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9BA3742528971452002845C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		9BAC7DA8291AB49D001772B3 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BAC7DA7291AB49D001772B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		9BAC7DAA291AB49D001772B3 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BAC7DA7291AB49D001772B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

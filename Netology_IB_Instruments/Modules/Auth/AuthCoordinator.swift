@@ -21,15 +21,28 @@ class AuthCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     func start() {
-        print("AuthCoordinator Start")
+        //print("AuthCoordinator Start")
         goToLoginPage()
     }
     func goToLoginPage(){
+        let realmCoordinator = RealmCoordinator()
         let myLoginInspector = MyLogicFactory()
-        let loginVC = LogInViewController(with: myLoginInspector.inspector())
+        let loginVC = LogInViewController(with: myLoginInspector.inspector(), databaseCoordinator: realmCoordinator)
         loginVC.viewModel = loginViewModel
         //loginVC.delegate = myLoginInspector.inspector()
-        navigationController.pushViewController(loginVC, animated: true)
+        realmCoordinator.checkIsAuthorised { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(.save):
+                print("🍋 Find model")
+                strongSelf.goToHome()
+                //strongSelf.viewModel!.goToHome()
+            case .failure(let error):
+                strongSelf.navigationController.pushViewController(loginVC, animated: true)
+                print(error)
+            }
+        }
+        //navigationController.pushViewController(loginVC, animated: true)
     }
 }
 extension AuthCoordinator: LoginNavigation {

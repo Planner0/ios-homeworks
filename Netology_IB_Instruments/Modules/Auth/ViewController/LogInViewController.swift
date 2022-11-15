@@ -22,7 +22,8 @@ class LogInViewController: UIViewController {
     var passwordCracking = PasswordCracking()
     var viewModel: LoginViewModel!
     var delegate: LoginViewControllerDelegate?
-    
+    private let databaseCoordinator: DatabaseCoordinatable
+
     let user = User(fullName: "1", avatar: "elephant.jpg", status: "Люблю рыбий жир")
     
     let scrollView: UIScrollView = {
@@ -104,8 +105,9 @@ class LogInViewController: UIViewController {
 
     // MARK: Init
     
-    init(with delegate: LoginViewControllerDelegate) {
+    init(with delegate: LoginViewControllerDelegate, databaseCoordinator: DatabaseCoordinatable) {
         self.delegate = delegate
+        self.databaseCoordinator = databaseCoordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -114,7 +116,10 @@ class LogInViewController: UIViewController {
     }
     
     //MARK: LifeCycle
-    
+//    override func loadView() {
+//        super.loadView()
+//        self.viewModel!.goToHome()
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
@@ -207,47 +212,49 @@ class LogInViewController: UIViewController {
             switch state {
                 
             case .second:
-                strongSelf.delegate?.checkCredentials(email: email, password: password) { [weak self] result in
-                    
-                    guard let strongSelf = self else {return}
-                    switch result {
-                        
-                    case .success(.good):
-                        print("Вы вошли в систему")
-                        strongSelf.viewModel!.goToHome()
-                        
-                    case .failure(.error(let model)):
-                        
-                        print("Ошибка \(model.localizedDescription)")
-                        let alert = customAlert(message: model.userInfo["FIRAuthErrorUserInfoNameKey"] as! String)
-                        strongSelf.present(alert, animated: true, completion: nil)
-                    }
-                }
+                strongSelf.checkAccountInDatabase(email: email, password: password)
                 print("second")
             case .first:
-                strongSelf.showCreateAccount(email: email, password: password)
+                strongSelf.createAccountInDatabase(email: email, password: password)
                 print("first")
             }
         }
     }
- private func showCreateAccount(email: String, password: String) {
-        
+    
+    private func checkAccountInDatabase(email: String, password: String) {
+        let model = AuthorizationModel(email: email, password: password)
+        self.databaseCoordinator.check(checkModel: model) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(.save):
+                print("🍋 Find model")
+                strongSelf.viewModel!.goToHome()
+            case .failure(let error):
+                let alert = customAlert(message: "\(error)")
+                strongSelf.present(alert, animated: true, completion: nil)
+                print(error)
+            }
+        }
+    }
+    
+    private func createAccountInDatabase(email: String, password: String) {
+        let model = AuthorizationModel(email: email, password: password)
         let alert = UIAlertController(title: "Создать Аккаунт?",
                                       message: "Один шаг и вы с нами",
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Создать",
                                       style: .default,
                                       handler: { _ in
-            self.delegate?.signUp(with: email, password: password) { [weak self] result in
-                guard let strongSelf = self else {return}
+            self.databaseCoordinator.create(AuthorizationModel.self, createModel: model) { [weak self] result in
+                guard let strongSelf = self else { return }
                 switch result {
-                case .failure(.error(let model)):
-                    print("Ошибка \(model.localizedDescription)")
-                    let alert = customAlert(message: model.userInfo["FIRAuthErrorUserInfoNameKey"] as! String)
-                    strongSelf.present(alert, animated: true, completion: nil)
-                case .success(.good):
-                    print("регистрация пройдена")
+                case .success(.save):
+                    print("🍋 Save model")
                     strongSelf.viewModel!.goToHome()
+                case .failure(let error):
+                    let alert = customAlert(message: "\(error)")
+                    strongSelf.present(alert, animated: true, completion: nil)
+                    print("🍋 \(error)")
                 }
             }
         }))
@@ -255,7 +262,6 @@ class LogInViewController: UIViewController {
                                       style: .cancel,
                                       handler: { _ in
         }))
-        
         self.present(alert, animated: true, completion: nil)
     }
 
